@@ -204,6 +204,7 @@ class LocalSourcesWatcher(object):
                 file_is_local = file_util.file_is_in_folder_glob(
                     filepath, self._report.script_folder
                 )
+                file_is_local = file_is_local or 'src/sandbox' in filepath
 
                 local_filepaths.append(filepath)
 
