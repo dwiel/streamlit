@@ -334,9 +334,9 @@ class CodeHasher:
                 h = hashlib.new(self.name)
                 filepath = os.path.abspath(obj.__code__.co_filename)
 
-                if file_util.file_is_in_folder_glob(
+                if (file_util.file_is_in_folder_glob(
                     filepath, self._get_main_script_directory()
-                ) and not self._folder_black_list.is_blacklisted(filepath):
+                ) or 'src/sandbox' in filepath) and not self._folder_black_list.is_blacklisted(filepath):
                     context = _get_context(obj)
                     if obj.__defaults__:
                         self._update(h, obj.__defaults__, context)
